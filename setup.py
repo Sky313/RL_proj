@@ -22,7 +22,7 @@ def get_requirements()->List[str]:
 setup(
     name = 'RL_project',
     version = '0.0.1',
-    author = 'SUrya',
+    author = 'Surya',
     author_email = 'suryagovindarajan97@gmail.com',
     packages = find_packages(),
     install_requires = get_requirements()
