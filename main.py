@@ -6,7 +6,7 @@ import random
 from src.components.MDP import State
 from src.components.game_rules import *
 from src.components.value_iteration import ValueIterationSolver
-from src.utils.utils import initialize_symbols
+from src.utils.utils import initialize_symbols, ai_symbol
 
 
 def generate_states():
@@ -52,37 +52,45 @@ def get_user_move(state):
             raise ProjectException(e,sys)
             print("Invalid input. Please enter a number:")
 
-# def get_user_symbol():
-#     while True:
-#         choice = input("Do you want to play as X or O? ").upper()
+# def get_ai_move(state, solver):
+#     best_value = float('-inf') if state.player == 'X' else float('inf')
+#     best_actions = []
+    
+#     for action in get_actions(state):
+#         next_state = apply_action(state, action)
+#         value = solver.values[next_state]
         
-#         if choice in ['X', 'O']:
-#             return choice
-        
-#         print("Invalid choice. Please enter X or O.")
+#         if state.player == 'X':
+#             if value > best_value:
+#                 best_value = value
+#                 best_actions = [action]
+#             elif value == best_value:
+#                 best_actions.append(action)
+#         else:  # 'O' player
+#             if value < best_value:
+#                 best_value = value
+#                 best_actions = [action]
+#             elif value == best_value:
+#                 best_actions.append(action)
+    
+#     return random.choice(best_actions)  
 
 def get_ai_move(state, solver):
     best_value = float('-inf') if state.player == 'X' else float('inf')
-    best_actions = []
-    
+    best_action = None
+
     for action in get_actions(state):
         next_state = apply_action(state, action)
         value = solver.values[next_state]
-        
-        if state.player == 'X':
-            if value > best_value:
-                best_value = value
-                best_actions = [action]
-            elif value == best_value:
-                best_actions.append(action)
-        else:  # 'O' player
-            if value < best_value:
-                best_value = value
-                best_actions = [action]
-            elif value == best_value:
-                best_actions.append(action)
-    
-    return random.choice(best_actions)  
+
+        if state.player == 'X' and value > best_value:
+            best_value = value
+            best_action = action
+        elif state.player == 'O' and value < best_value:
+            best_value = value
+            best_action = action
+
+    return best_action
 
 if __name__ == "__main__":
     states = generate_states()

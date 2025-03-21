@@ -1,7 +1,6 @@
 from src.components.MDP import State
-from src.utils.utils import initialize_symbols
+from src.utils.utils import ai_symbol
 
-_, ai_symbol = initialize_symbols()
 
 def get_reward(state):
     """Calculate immediate reward for terminal (final) states"""
