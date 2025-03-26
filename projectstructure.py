@@ -7,10 +7,9 @@ list_of_files=[
 
     f"{project_name}/__init__.py",
     f"{project_name}/components/__init__.py",
-    f"{project_name}/components/data_ingestion.py",
-    f"{project_name}/components/data_validation.py",
-    f"{project_name}/components/data_transformation.py",
-    f"{project_name}/components/model_trainer.py",
+    f"{project_name}/components/MDP.py",
+    f"{project_name}/components/game_rules.py",
+    f"{project_name}/components/value_iteration.py",
     f"{project_name}/constants/__init__.py",
     f"{project_name}/constants/constants.py",
     f"{project_name}/exception/__init__.py",
